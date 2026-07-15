@@ -1,13 +1,11 @@
 # Releasing Stackr
 
-Stackr auto-updates via Tauri's updater. Because the `stackr` source repo is
-**private** and the in-app updater fetches its endpoint **unauthenticated**, the
-release artifacts (installer + `latest.json`) are published to the **public**
-[`stackr-manifest`](https://github.com/igrdkl/stackr-manifest) repo. The app
-checks:
+Stackr auto-updates via Tauri's updater. Because this repo is **public**, its own
+Release assets are reachable unauthenticated, so releases are published **here** —
+no separate manifest repo and no cross-repo token. The app checks:
 
 ```
-https://github.com/igrdkl/stackr-manifest/releases/latest/download/latest.json
+https://github.com/igrdkl/stackr/releases/latest/download/latest.json
 ```
 
 and offers the update in **Settings → Updates**.
@@ -21,18 +19,16 @@ The **public** signing key is committed in `src-tauri/tauri.conf.json`
 %USERPROFILE%\.tauri\stackr-updater.key
 ```
 
-It is **not** in the repo and must never be committed. Add these three secrets to
-the **`stackr`** repo (Settings → Secrets and variables → Actions):
+It is **not** in the repo and must never be committed. Add these two secrets to the
+repo (Settings → Secrets and variables → Actions):
 
 | Secret | Value |
 |--------|-------|
 | `TAURI_SIGNING_PRIVATE_KEY` | entire contents of `%USERPROFILE%\.tauri\stackr-updater.key` |
 | `TAURI_SIGNING_PRIVATE_KEY_PASSWORD` | the key's password (empty — it was generated without one) |
-| `MANIFEST_RELEASE_TOKEN` | a Personal Access Token with **contents: write** on `stackr-manifest` |
 
-> The PAT is needed because the workflow runs in `stackr` but publishes the
-> release to a different repo; the default `GITHUB_TOKEN` can't write across repos.
-> Use a fine-grained PAT scoped to `stackr-manifest` only.
+> The default `GITHUB_TOKEN` publishes the Release; no Personal Access Token is
+> needed now that the repo is public.
 >
 > Keep a backup of the private key. If it's lost, existing installs can no longer
 > verify updates and users must reinstall manually.
@@ -46,10 +42,9 @@ the **`stackr`** repo (Settings → Secrets and variables → Actions):
    git tag v0.3.0
    git push origin v0.3.0
    ```
-3. The **release** workflow builds + signs the installer in `stackr`, generates
-   `latest.json`, and publishes both to a **`stackr-manifest`** Release named for
-   the tag. (It publishes directly — no draft — so the updater endpoint resolves
-   immediately.)
+3. The **release** workflow builds + signs the installer and publishes it with a
+   generated `latest.json` to this repo's Releases, named for the tag (no draft, so
+   the updater endpoint resolves immediately).
 
 Existing installs pick up the update on their next launch (or via
 **Settings → Updates → Check for updates**).

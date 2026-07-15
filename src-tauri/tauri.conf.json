@@ -28,7 +28,7 @@
   },
   "plugins": {
     "updater": {
-      "endpoints": ["https://github.com/igrdkl/stackr-manifest/releases/latest/download/latest.json"],
+      "endpoints": ["https://github.com/igrdkl/stackr/releases/latest/download/latest.json"],
       "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IENGOTlFMDAwNEFBRUNENDcKUldSSHphNUtBT0NaejJiS0JrUzJOYUM2c1E4MTdSYlZ3MjFzZWg2ZTNyYVUyM3Y1aUJ1T0JCd1cK"
     }
   },
